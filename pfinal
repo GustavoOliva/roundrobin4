@@ -1,0 +1,105 @@
+  Private Function Procesos_En_Cero() As Integer
+
+        Procesos_En_Cero = 0
+
+        For i As Integer = 0 To tblprocesos.Rows.Count - 1
+
+            If Not tblprocesos.Item(3, i).Value Is Nothing Then
+                If tblprocesos.Item(3, i).Value = 0 Then
+                    Procesos_En_Cero += 1
+                End If
+            End If
+
+        Next
+
+    End Function
+
+    'Public Sub Planificar()
+
+
+    '    Try
+
+    '        Dim RequeridoCPU As Integer = 0
+    '        Dim NomProceso As String = ""
+    '        Dim Pendiente As Double = 0
+    '        Dim Color As String = ""
+    '        Dim Fila As Integer = 0
+    '        Dim Columna As Integer = 0
+
+
+    '        For i As Integer = 0 To tblprocesos.Rows.Count - 1
+
+    '            While tblprocesos.Item(3, i).Value <> 0
+
+    '                RequeridoCPU = tblprocesos.Item(3, i).Value 'CUANTO USO DE CPU TIENE ASIGNADO
+    '                NomProceso = tblprocesos.Item(0, i).Value 'NOMBRE DEL PROCESO
+
+    '                If RequeridoCPU > 0 Then
+
+    '                    Pendiente = RequeridoCPU - txtQuantum.Value
+
+    '                    If Pendiente >= 0 Then
+
+    '                        'ASIGNAMOS LO QUE QUEDO PENDIENTE
+    '                        tblprocesos.Item(3, i).Value = Pendiente
+
+    '                        'OBTENEMOS EL NOMBRE DEL COLOR PARA ESTE PROCESO
+    '                        Color = tblprocesos.Item(2, i).Value
+
+    '                        'EL CICLO LLENA UNA CASILLA POR CADA UN QUANTUM
+    '                        For j = 1 To txtQuantum.Value
+
+    '                            dgridRoundRobin.Item(Columna, Fila).Value = NomProceso
+    '                            pintar(Color, Fila, Columna, dgridRoundRobin)
+
+    '                            If Columna = dgridRoundRobin.Columns.Count - 1 Then
+    '                                Fila += 1
+    '                                Columna = 0
+    '                            Else
+    '                                Columna += 1
+    '                            End If
+
+    '                        Next
+
+    '                    Else
+
+    '                        'EN CASO QUE EL VALOR DEL CPU ES MENOR QUE 0
+    '                        Pendiente = tblprocesos.Item(3, i).Value
+
+    '                        'obtiene nombre de color
+    '                        Color = tblprocesos.Item(2, i).Value
+
+    '                        escribir_planificacion(NomProceso, Fila, Columna, dgridRoundRobin)
+
+    '                        For cant As Integer = 1 To Pendiente
+
+    '                            escribir_planificacion(NomProceso, Fila, Columna, dgridRoundRobin)
+
+    '                            pintar(Color, xx, yy, dgridRoundRobin)
+
+    '                            If Columna = dgridRoundRobin.Columns.Count - 1 Then
+    '                                Fila += 1
+    '                                Columna = 0
+    '                            Else
+    '                                Columna += 1
+    '                            End If
+
+    '                        Next
+
+    '                        tblprocesos.Item(3, d).Value = 0
+
+    '                    End If 'Pendiente > 0
+
+    '                End If 'Requerido CPU >0
+
+    '            End While
+
+    '        Next
+
+
+
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+    '    End Try
+
+
